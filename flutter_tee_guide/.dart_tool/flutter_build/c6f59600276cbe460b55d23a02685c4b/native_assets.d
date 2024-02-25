@@ -1,0 +1,1 @@
+ C:\\work\\hedii\\.dart_tool\\flutter_build\\c6f59600276cbe460b55d23a02685c4b\\native_assets.yaml: 

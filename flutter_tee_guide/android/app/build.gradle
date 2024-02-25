@@ -1,0 +1,70 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
+
+    defaultConfig {
+        applicationId "com.example.teeguide"
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        multiDexEnabled true // Enable multidex support
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // Disable code shrinking for now
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        // Enable data binding
+        dataBinding true
+    }
+
+    // Enable multidex
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        // Disable lint checking for now
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation 'androidx.multidex:multidex:2.0.1' // Add multidex dependency
+    implementation platform('com.google.firebase:firebase-bom:29.0.0') // Update to the latest Firebase BOM version
+    implementation 'com.google.firebase:firebase-analytics-ktx' // Add Firebase Analytics dependency
+    implementation 'com.google.firebase:firebase-crashlytics-ktx' // Add Firebase Crashlytics dependency
+    // Add other dependencies as needed
+}
+
+// Apply the Google Services plugin
+apply plugin: 'com.google.gms.google-services'
